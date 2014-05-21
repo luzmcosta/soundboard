@@ -1,0 +1,33 @@
+{
+  "name": "launch-page",
+  "version": "0.0.1",
+  "author": "David LeMieux <david@lemieux.es>",
+  "description": "A soundboard for remote clients",
+  "contributors": [
+    {
+      "name": "David LeMieux",
+      "email": "david@lemieux.es"
+    }
+  ],
+  "scripts": {
+    "server": "forever start server.js",
+    "client": "forever start client.js",
+    "preinstall": "npm i -g forever"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lemieuxster/soundboard.git"
+  },
+  "dependencies" : {
+    "config"      : "0.4.35",
+    "express"     :  "3.x",
+    "underscore"  :  "1.6.0",
+    "MD5"         :  "1.2.1",
+    "socket.io"   :  "0.9.15"
+
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.10"
+  }
+}
