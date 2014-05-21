@@ -5,6 +5,10 @@
 
     "auth" : {
         "user" : "davey",
-        "passMd5" : "e97af82bf272fd6268cc2e674421f304"
+        "passMd5" : "1a1bc1191f0416153ee889cf6916086a"
+    },
+
+    "s3" : {
+
     }
 }
