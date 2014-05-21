@@ -1,5 +1,5 @@
 $(function() {
-    var host = location.origin.replace(/^https|http/, 'ws');
+    var host = location.origin.replace(/^http/, 'ws');
     var socket = io.connect(host);
 
     socket.on('connected', function (msg) {
