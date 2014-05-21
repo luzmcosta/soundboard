@@ -1,0 +1,10 @@
+{
+    "environment" : {
+        "PORT" : 6060
+    },
+
+    "auth" : {
+        "user" : "davey",
+        "passMd5" : "e97af82bf272fd6268cc2e674421f304"
+    }
+}
