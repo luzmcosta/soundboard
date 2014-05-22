@@ -1,5 +1,5 @@
 {
-  "name": "launch-page",
+  "name": "soundboard",
   "version": "0.0.1",
   "author": "David LeMieux <david@lemieux.es>",
   "description": "A soundboard for remote clients",
@@ -10,9 +10,7 @@
     }
   ],
   "scripts": {
-    "server": "forever start server.js",
-    "client": "forever start client.js",
-    "preinstall": "npm i -g forever"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -24,7 +22,6 @@
     "underscore"         :  "1.6.0",
     "MD5"                :  "1.2.1",
     "socket.io"          :  "0.9.15",
-    "socket.io-client"   :  "0.9.15",
     "knox"               :  "0.8.10"
 
   },
