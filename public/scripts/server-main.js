@@ -5,7 +5,7 @@ $(function() {
         var $list = $('#sound-list');
 
         _.each(list, function(soundInfo) {
-            var sound = $('<p></p>');
+            var sound = $('<div></div>');
             sound.addClass('sound');
             sound.html(soundInfo.key);
             sound.data('key', soundInfo.key);
