@@ -8,9 +8,7 @@
     },
 
     "auth" : {
-        "enabled" : true,
-        "user" : "davey",
-        "passMd5" : "1a1bc1191f0416153ee889cf6916086a"
+        "enabled" : true
     },
 
     "s3" : {
