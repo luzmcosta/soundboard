@@ -3,12 +3,22 @@
         "PORT" : 6060
     },
 
+    "room" : {
+        "name" : "board"
+    },
+
     "auth" : {
         "user" : "davey",
         "passMd5" : "1a1bc1191f0416153ee889cf6916086a"
     },
 
     "s3" : {
+        "key" : "AKIAJ25BMAKIBMU34REA",
+        "secret" : "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",
+        "bucket" : "sndbrd"
+    },
 
+    "server" : {
+        "host" : "sndbrd.herokuapp.com"
     }
 }
