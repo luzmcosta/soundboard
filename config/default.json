@@ -1,6 +1,6 @@
 {
     "environment" : {
-        "PORT" : 6060
+        "port" : 6060
     },
 
     "room" : {
@@ -8,6 +8,7 @@
     },
 
     "auth" : {
+        "enabled" : true,
         "user" : "davey",
         "passMd5" : "1a1bc1191f0416153ee889cf6916086a"
     },
@@ -16,9 +17,5 @@
         "key" : "AKIAJ25BMAKIBMU34REA",
         "secret" : "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",
         "bucket" : "sndbrd"
-    },
-
-    "server" : {
-        "host" : "sndbrd.herokuapp.com"
     }
 }
