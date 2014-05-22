@@ -1,0 +1,10 @@
+.sound {
+    width: 200px;
+    height: 50px;
+    float: left;
+    padding: 20px;
+}
+
+.sound:hover {
+    background-color: #AAEEFF;
+}
