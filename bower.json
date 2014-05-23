@@ -4,6 +4,7 @@
     "dependencies": {
         "jquery" : "2.1.0",
         "underscore" : "1.6.0",
-        "socket.io-client" : "0.9.15"
+        "socket.io-client" : "0.9.15",
+        "typeahead.js" : "0.10.2"
     }
 }
