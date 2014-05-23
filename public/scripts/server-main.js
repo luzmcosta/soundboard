@@ -1,6 +1,19 @@
 $(function() {
     var player = $('#player')[0];
 
+    var $speak = $('#speak');
+    $speak.on('click', function() {
+        var text = $('#speech-text').val();
+        if (text) {
+            $.ajax({
+                url: '/speech',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({text:text, voice:"Victoria"})
+            });
+        }
+    });
+
     $.ajax('/sound/list').done(function(list) {
         var $list = $('#sound-list');
 
@@ -43,12 +56,4 @@ $(function() {
         } finally {}
     }
 
-    /*
-    $.ajax({
-        url: '/speech',
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({text:"", voice:"Alex"})
-    });
-     */
 });
