@@ -11,12 +11,17 @@ body {
 }
 
 .logotype {
-    padding-right: 50px;
     font-family: 'Satisfy', cursive;
-    background: url(/images/bread.png) no-repeat right;
-    background-size: 41px 17px;
     margin: 0 auto;
-    width: 160px;
+    text-align: center;
+}
+
+.logotype .logo {
+    width: 41px;
+    height: 17px;
+    display: inline-block;
+    background: url(/images/bread.png) no-repeat;
+    background-size: 41px 17px;
 }
 
 .center {
