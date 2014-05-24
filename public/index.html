@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="styles/server.css" type="text/css" />
     </head>
     <body>
-        <h1 class="logotype">Soundboard</h1>
+        <h1 class="logotype">Soundboard <span class="logo"></span></h1>
         <div class="ultrabox">
             <input type="text" id="ultrabox" placeholder="Sound or Speech"/>
         </div>
@@ -17,12 +17,11 @@
         </div>
 
         <!--Audio Player-->
-        <audio id="player"></audio>
+        <audio id="player" preload="none"></audio>
 
         <!--Scripts-->
         <script src="scripts/dependencies/underscore/underscore.js" type="text/javascript"></script>
         <script src="scripts/dependencies/jquery/dist/jquery.min.js" type="text/javascript"></script>
-        <script src="scripts/dependencies/socket.io-client/dist/socket.io.min.js" type="text/javascript"></script>
         <script src="scripts/dependencies/typeahead.js/dist/typeahead.jquery.min.js" type="text/javascript"></script>
         <script src="scripts/server-main.js" type="text/javascript"></script>
 
