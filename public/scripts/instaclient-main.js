@@ -34,6 +34,14 @@ $(function() {
                         notification.show();
                     }
                 }
+
+                if (window.speechSynthesis) {
+                    var speech = new SpeechSynthesisUtterance(msg.info.text);
+                    speech.voice = _.find(window.speechSynthesis.getVoices(), function(voice) {
+                        return voice.name.toLowerCase() == msg.info.voice.toLowerCase();
+                    });
+                    window.speechSynthesis.speak(speech);
+                }
             });
 
             $(this).html("Disconnect");
