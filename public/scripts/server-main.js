@@ -4,30 +4,33 @@ $(function() {
     var mp3Regex = /\.mp3/gi;
     var playbackTimer = null;
 
-//    var $speak = $('#speak');
-//    $speak.on('click', function() {
-//        var text = $('#speech-text').val();
-//        if (text) {
-//            $.ajax({
-//                url: '/speech',
-//                type: 'POST',
-//                contentType: 'application/json',
-//                data: JSON.stringify({text:text, voice:"Victoria"})
-//            });
-//        }
-//    });
-
     $.ajax('/sound/list').done(function(list) {
         var $list = $('#sound-list');
 
-        _.each(list, function(soundInfo) {
-            var sound = $('<div></div>');
-            sound.addClass('sound');
-            sound.html(soundInfo.key.replace(mp3Regex, ''));
-            sound.data('key', soundInfo.key);
-            sound.data('url', soundInfo.url);
+        var listGroups = _.groupBy(list, function(item) {
+            return item.key.substr(0, 1).toLowerCase();
+        });
 
-            $list.append(sound);
+        _.each(listGroups, function(group, groupKey) {
+            var $group = $('<div></div>');
+            $group.addClass('group');
+
+            var $dex = $('<div></div>');
+            $dex.html(groupKey.toUpperCase());
+            $dex.addClass('rolodex');
+
+            $group.append($dex);
+
+            _.each(group, function(soundInfo) {
+                var $sound = $('<div></div>');
+                $sound.addClass('sound');
+                $sound.html(soundInfo.key.replace(mp3Regex, ''));
+                $sound.data('key', soundInfo.key);
+                $sound.data('url', soundInfo.url);
+                $group.append($sound);
+            });
+
+            $list.append($group);
         });
 
         $list.on('click', '.sound', function() {
@@ -39,15 +42,16 @@ $(function() {
             }
         });
 
-        $list.on('mousedown', '.sound', function() {
+        $list.on('mousedown touchstart', '.sound', function() {
             var $this = $(this);
+            preload($this.data('url'));
             playbackTimer = setTimeout(function() {
                 $this.data('preview', true);
                 preview($this.data('url'));
             }, 1000);
         });
 
-        $list.on('mouseup', '.sound', function() {
+        $list.on('mouseup touchend mouseleave touchcancel', '.sound', function() {
             clearTimeout(playbackTimer);
             endPreview();
         });
@@ -71,6 +75,13 @@ $(function() {
                 });
 
                 callback(sortedList);
+            },
+            templates: {
+                empty: [
+                  '<div class="empty-message">',
+                  'No sound match, text will be spoken.',
+                  '</div>'
+                ].join('\n')
             }
         });
 
@@ -86,6 +97,12 @@ $(function() {
                 $(this).typeahead('close');
             }
         });
+
+        $ultrabox.on('blur', function() {
+            $(this).val('');
+        });
+
+        $ultrabox.focus();
 
     });
 
@@ -106,18 +123,18 @@ $(function() {
         }
     }
 
+    function preload(url) {
+        endPreview();
+        player.setAttribute("src", url);
+    }
+
     function preview(url) {
         endPreview();
-        try {
-            player.setAttribute("src", url);
-            player.play();
-        } finally {}
+        player.play();
     }
 
     function endPreview() {
-        try {
-            player.pause();
-        } finally {}
+        player.pause();
     }
 
 });
