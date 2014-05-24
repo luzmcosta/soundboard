@@ -44,6 +44,11 @@ $(function() {
                 }
             });
 
+            socket.on('disconnect', function() {
+                $connect.html('Connect');
+            });
+            //TODO errors, etc.
+
             $(this).html("Disconnect");
         } else {
             player.pause();
