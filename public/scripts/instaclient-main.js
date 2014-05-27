@@ -1,17 +1,17 @@
 $(function() {
     var socket = null;
-    var player = $('#player')[0];
+    var audios = {};
+
+    var $players = $('#players');
     var $connect = $('#connect');
     var $log = $('#log');
 
+    if ("speechSynthesis" in window) {
+        window.speechSynthesis.getVoices()
+    }
+
     $connect.on('click', function() {
         if (!socket || !socket.socket.connected) {
-            if (window.webkitNotifications) {
-                if (window.webkitNotifications.checkPermission() !== 0) {
-                    window.webkitNotifications.requestPermission();
-                }
-            }
-
             var hadSocket = !!socket;
             var host = location.origin.replace(/^http/, 'ws');
             var connectionOptions = {};
@@ -21,21 +21,26 @@ $(function() {
             socket = io.connect(host, connectionOptions);
 
             socket.on('sound', function(msg) {
-                log("[sound ] " + msg.info.key);
-                player.setAttribute("src", msg.info.url);
+                var key = msg.info.key;
+                var player = audios[key];
+                if (!player) {
+                    var $player = $('<audio></audio>');
+                    $players.append($player);
+                    player = $player[0];
+                    audios[key] = player;
+                    player.setAttribute("src", msg.info.url);
+                } else {
+                    player.pause();
+                    player.currentTime = 0;
+                }
+                log("[sound ] " + key);
                 player.play();
             });
 
             socket.on('speech', function(msg) {
                 log("[speech] " + msg.info.voice + ": " + msg.info.text);
-                if (window.webkitNotifications && window.webkitNotifications.checkPermission() === 0) {
-                    var notification = window.webkitNotifications.createNotification('/images/bread.png', "sndbrd: " + msg.info.voice, msg.info.text);
-                    if (notification) {
-                        notification.show();
-                    }
-                }
 
-                if (window.speechSynthesis) {
+                if ("speechSynthesis" in window) {
                     var speech = new SpeechSynthesisUtterance(msg.info.text);
                     speech.voice = _.find(window.speechSynthesis.getVoices(), function(voice) {
                         return voice.name.toLowerCase() == msg.info.voice.toLowerCase();
@@ -51,7 +56,9 @@ $(function() {
 
             $(this).html("Disconnect");
         } else {
-            player.pause();
+            _.each(audios, function(player) {
+                player.pause();
+            });
             socket.disconnect();
             $(this).html("Connect");
         }

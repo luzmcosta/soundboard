@@ -4,9 +4,10 @@ $(function() {
     var mp3Regex = /\.mp3/gi;
     var playbackTimer = null;
 
-    $.ajax('/sound/list').done(function(list) {
-        var $list = $('#sound-list');
+    var $list = $('#sound-list');
+    var $voice = $('#voice');
 
+    $.ajax('/sound/list').done(function(list) {
         var listGroups = _.groupBy(list, function(item) {
             return item.key.substr(0, 1).toLowerCase();
         });
@@ -45,6 +46,8 @@ $(function() {
         $list.on('mousedown touchstart', '.sound', function() {
             var $this = $(this);
             preload($this.data('url'));
+
+            clearTimeout(playbackTimer);
             playbackTimer = setTimeout(function() {
                 $this.data('preview', true);
                 preview($this.data('url'));
@@ -87,29 +90,36 @@ $(function() {
 
         $ultrabox.on('typeahead:selected typeahead:autocompleted', function() {
             /* selected or autocompleted */
+            var val = $(this).val();
+            $voice.toggle(!matchesSound(val));
         });
 
-        $ultrabox.on('keypress', function(evt) {
+        $ultrabox.on('keyup', function(evt) {
+            var val = $(this).val();
             if (evt.which === 13) { //ENTER
-                var val = $(this).val();
                 sendRequest(val);
-                $(this).val('');
+                $(this).typeahead('val','');
                 $(this).typeahead('close');
+                $voice.show();
+            } else {
+                $voice.toggle(!matchesSound(val));
             }
-        });
 
-        $ultrabox.on('blur', function() {
-            $(this).val('');
         });
 
         $ultrabox.focus();
 
     });
 
-    function sendRequest(val) {
-        var soundMatch = _.find(ultralist, function(item) {
-            return item.key.toLowerCase() === val.toLowerCase();
+    function matchesSound(val) {
+        val = val.toLowerCase();
+        return _.find(ultralist, function(item) {
+            return item.key.toLowerCase() === val;
         });
+    }
+
+    function sendRequest(val) {
+        var soundMatch = matchesSound(val);
 
         if (soundMatch) {
             $.ajax('/sound/' + val + ".mp3");
@@ -118,7 +128,7 @@ $(function() {
                 url: '/speech',
                 type: 'POST',
                 contentType: 'application/json',
-                data: JSON.stringify({text:val, voice:"Victoria"})
+                data: JSON.stringify({text:val, voice: $voice.val() || "Alex"})
             });
         }
     }
