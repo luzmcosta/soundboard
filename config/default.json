@@ -13,5 +13,9 @@
 
     "s3" : {
         "bucket" : "sndbrd"
+    },
+
+    "webhooks" : {
+        "slack" : "SLACK_WEBHOOK"
     }
 }
