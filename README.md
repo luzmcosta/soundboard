@@ -1,7 +1,8 @@
 Soundboard Server
 =================
 
-*Quick Setup*
+Quick Setup
+-----------
 
 Needs these ENV variables:
 
