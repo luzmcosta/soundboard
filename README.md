@@ -16,9 +16,11 @@ Needs these ENV variables:
 
 With bower and npm installed run:
 
-`bower install`
-`npm install`
-`npm start`
+```
+    bower install
+    npm install
+    npm start
+```
 
 Pro tip: Use forever - `forever start server.js`
 
