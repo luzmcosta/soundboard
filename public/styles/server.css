@@ -5,9 +5,9 @@ body {
     background-color: #056;
     color: #FFF;
     font-family: Helvetica Neue, Arial, sans-serif;
-    /*-webkit-user-select: none;*/
-       /*-moz-user-select: none;*/
-            /*user-select: none;*/
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
 }
 
 .logotype {
