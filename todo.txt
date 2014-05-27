@@ -1,0 +1,11 @@
+﻿TODO
+
+Insta-client one audio for each sound. 
+
+Soundboard voice picker
+Soundboard multiple user/pass
+Soundboard slack api
+
+Documentation/Write Up
+
+

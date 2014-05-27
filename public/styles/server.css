@@ -5,9 +5,9 @@ body {
     background-color: #056;
     color: #FFF;
     font-family: Helvetica Neue, Arial, sans-serif;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-            user-select: none;
+    /*-webkit-user-select: none;*/
+       /*-moz-user-select: none;*/
+            /*user-select: none;*/
 }
 
 .logotype {
@@ -30,8 +30,20 @@ body {
 
 /*Ultrabox*/
 .ultrabox {
+    position: relative;
     width: 600px;
     margin: 0 auto;
+}
+
+.ultrabox .voice {
+    position: absolute;
+    right: 13px;
+    top: 13px;
+    opacity: 0.5;
+}
+
+.ultrabox .voice:hover {
+    opacity: 1;
 }
 
 .ultrabox input {
@@ -191,5 +203,9 @@ and (max-device-width : 480px)
 
     .tt-dropdown-menu {
         width: 300px;
+    }
+
+    .ultrabox .voice {
+        display: none;
     }
 }
