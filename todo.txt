@@ -3,7 +3,3 @@
 Soundboard API keys
 Soundboard multiple user/pass
 
-
-Implement quiet period for full client.
-
-
