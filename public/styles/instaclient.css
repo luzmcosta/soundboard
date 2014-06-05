@@ -8,6 +8,14 @@ body {
     -webkit-user-select: none;
        -moz-user-select: none;
             user-select: none;
+
+    -webkit-transition: 1s ease-in-out;
+
+    -webkit-transition-property: background-color;
+}
+
+.disconnected {
+    background-color: #AAA !important;
 }
 
 .logotype {
@@ -43,6 +51,7 @@ body {
 #connect {
     display: inline-block;
     margin: 10px auto;
+    background-color: #506;
 }
 
 #log {
@@ -55,6 +64,10 @@ body {
     font-family: monospace;
     overflow: auto;
     border: 1px solid #111;
+}
+
+#log p {
+    margin: 0px;
 }
 
 .button {

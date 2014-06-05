@@ -49,7 +49,17 @@ $(function() {
                 }
             });
 
+            socket.on('connect', function() {
+                log("Connected to server: " + host);
+                $('body').removeClass('disconnected');
+                $connect.addClass('disconnected');
+                $connect.html('Disconnect');
+            });
+
             socket.on('disconnect', function() {
+                log("Disconnected from server: " + host);
+                $('body').addClass('disconnected');
+                $connect.removeClass('disconnected');
                 $connect.html('Connect');
             });
             //TODO errors, etc.
