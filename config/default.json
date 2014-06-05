@@ -1,0 +1,19 @@
+{
+    "environment" : {
+        "port" : 6060
+    },
+
+    "room" : {
+        "name" : "board"
+    },
+
+    "auth" : {
+        "enabled" : true
+    },
+
+    "s3" : {
+        "bucket" : "sndbrd"
+    },
+
+    "webhooks" : {}
+}
