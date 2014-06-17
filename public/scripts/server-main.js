@@ -1,7 +1,7 @@
 $(function() {
     var player = $('#player')[0];
     var ultralist = null;
-    var mp3Regex = /\.mp3/gi;
+    var mp3Regex = /\.mp3|wav/gi;
     var playbackTimer = null;
 
     var $list = $('#sound-list');
@@ -61,7 +61,7 @@ $(function() {
 
         var $ultrabox = $('#ultrabox');
         ultralist = _.map(list, function(item) {
-            return {key: item.key.replace(mp3Regex, '')};
+            return {key: item.key};
         });
 
         $ultrabox.typeahead({
@@ -122,7 +122,7 @@ $(function() {
         var soundMatch = matchesSound(val);
 
         if (soundMatch) {
-            $.ajax('/sound/' + val + ".mp3");
+            $.ajax('/sound/' + val);
         } else if (val) {
             $.ajax({
                 url: '/speech',
