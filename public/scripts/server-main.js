@@ -36,14 +36,14 @@ $(function() {
             $list.append($group);
         });
 
-        $list.on('click', '.sound', function() {
+        $list.on('click', '.sound', _.debounce(function() {
             if (!$(this).data('preview')) {
                 var key = $(this).data('key');
                 $.ajax('/sound/' + key);
             } else {
                 $(this).data('preview', false);
             }
-        });
+        }, 300, true));
 
         $list.on('mousedown touchstart', '.sound', function() {
             var $this = $(this);
