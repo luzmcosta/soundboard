@@ -9,6 +9,7 @@ $(function() {
     var $voice = $('#voice');
 
     $.ajax('/sound/list').done(function(list) {
+        if (!_.isArray(list)) list = [];
         soundList = list;
         var listGroups = _.groupBy(list, function(item) {
             return item.key.substr(0, 1).toLowerCase();

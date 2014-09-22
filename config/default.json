@@ -3,8 +3,8 @@
         "port" : 6060
     },
 
-    "room" : {
-        "name" : "board"
+    "default_channel" : {
+        "name" : "public"
     },
 
     "auth" : {
