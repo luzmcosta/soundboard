@@ -15,5 +15,7 @@
         "bucket" : "sndbrd"
     },
 
-    "webhooks" : {}
+    "webhooks" : {},
+
+    "limits" : {}
 }
